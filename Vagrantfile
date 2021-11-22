@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
         bastion.vm.box = IMAGE_NAME
         bastion.vm.network "private_network", ip: "10.10.1.3"
         bastion.vm.hostname = "bastion"
-        bastion.vm.synced_folder "./ansible", "/ansible", type: "nfs"
+        bastion.vm.synced_folder "./ansible", "/ansible", type: "smb"
 
         bastion.vm.provision "ansible" do |ansible|
             ansible.playbook = "vm03.yml"
