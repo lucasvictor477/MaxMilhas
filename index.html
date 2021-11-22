@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html Lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv-"X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Consulta CEP</title>
+</head>
+<body>
+	<h1>Consulta CEP</h1>
+	<label> Digite o CEP: </label>
+	<input type="number" id="cep" />
+	<button onclick="consultaendereco()">Consultar</button>
+	<div id="resultado">
+		<p>Resultado</p>
+	</div>
+	
+	<script>
+		function consulta(){
+			let cep = document.querySelector('#cep').value;
+			if (cep.length !== 8){
+				alert('CEP inválido!');
+				return;
+			}
+			
+			let url = `https://viacep.com.br/ws/$(cep)/json/`;
+			
+			fetch(url).then(function(response)){
+				response.json().then(exibirEndereco);
+				});
+			}
+			
+			function exibirEndereco(dados){
+				let resultado = document.querySelector(`#resultado`);
+				if (dados.erro) {
+					resultado.innerHTML = "Não foi possível encontrar o endereço!"
+				} else {
+				resultado.innerHTML = `<p>Rua: $(dados.rua)</p>
+									   <p>Bairro: $(dados.bairro)</p>	
+									   <p>UF: $(dados.uf)</p>
+									   <p>IBGE: $(dados.ibge)</p>`
+			
+			}
+	</script>
