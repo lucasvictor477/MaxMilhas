@@ -24,10 +24,10 @@ Vagrant.configure("2") do |config|
         end
     end
     
-    config.vm.provision "shell", inline: <<-SHELL
-        wget -q https://github.com/lucasvictor477/MaxMilhas/blob/6c18684d2b711f81175fbdb7fadc7bb4c8f4755f/index.html -O /var/www/html/index.html;
-        service apache2 restart;
-    end
+#    config.vm.provision "shell", inline: <<-SHELL
+#        wget -q https://github.com/lucasvictor477/MaxMilhas/blob/6c18684d2b711f81175fbdb7fadc7bb4c8f4755f/index.html -O /var/www/html/index.html;
+#        service apache2 restart;
+#    end
 
     (1..N).each do |i|
         config.vm.define "node-#{i}" do |node|
