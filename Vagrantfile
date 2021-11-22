@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
         bastion.vm.synced_folder "./ansible", "/ansible", type: "smb"
 
         bastion.vm.provision "ansible" do |ansible|
-            ansible.playbook = "vm03.yml"
+            ansible.playbook = "bastion.yml"
             ansible.extra_vars = {
                 node_ip: "10.10.1.3",
                 ansible_python_interpreter: "/usr/bin/python3",
