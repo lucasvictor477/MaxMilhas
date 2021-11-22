@@ -9,13 +9,13 @@ Vagrant.configure("2") do |config|
         v.cpus = 1
     end
 
-    config.vm.define "vm01" do |vm03|
-        vm03.vm.box = IMAGE_NAME
-        vm03.vm.network "private_network", ip: "10.10.1.3"
-        vm03.vm.hostname = "vm03"
-        vm03.vm.synced_folder "./ansible", "/ansible", type: "nfs"
+    config.vm.define "bastion" do |bastion|
+        bastion.vm.box = IMAGE_NAME
+        bastion.vm.network "private_network", ip: "10.10.1.3"
+        bastion.vm.hostname = "bastion"
+        bastion.vm.synced_folder "./ansible", "/ansible", type: "nfs"
 
-        vm03.vm.provision "ansible" do |ansible|
+        bastion.vm.provision "ansible" do |ansible|
             ansible.playbook = "vm03.yml"
             ansible.extra_vars = {
                 node_ip: "10.10.1.3",
